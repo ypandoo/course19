@@ -1,0 +1,82 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link href="css/base.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <link href="css/style-animate.css" rel="stylesheet">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/site_base.js"></script>
+  <script type="text/javascript" src="js/layer/layer.js"></script>
+  <link rel="stylesheet" type="text/css" href="js/layer/skin/default/layer.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <style>
+    html {
+      background-image: url(images/bg.jpg);
+    }
+  </style>
+</head>
+
+<body onload="reload()" id="scaleable-wrapper">
+  <div id="resize" style="top: 50%; left: 50%;position: absolute;width: 1400px;height: 788px;">
+
+    <div class="animated fadeInUp" style="position: absolute; width:100%; top: 0%; left: 0;height:100%">
+      <img src="images/23/01.jpg" width="100%" height="100%" alt="" />
+    </div>
+
+    <div class="menu0">
+      <a onclick="checkPage(3)"><div class="item1"></div></a>
+      <a onclick="checkPage(99)"><div class="item2"></div></a>
+      <a onclick="checkPage(99)"><div class="item3"></div></a>
+      <a onclick="checkPage(99)"><div class="item4"></div></a>
+      <!-- <a onclick="checkPage(10)"><div class="item5"></div></a> -->
+    </div>
+
+  </div>
+
+  <div class="p-n-r">
+    <div class="p-r">
+      <a href="#">
+        <div class="out fr">退出</div>
+      </a>
+      <div class="page fr">23/29</div>
+      <div class="next fr" data="24.html"></div>
+      <a href="22.html">
+        <div class="prev fr"></div>
+      </a>
+    </div>
+  </div>
+
+  <div id="right_div" class="mydiv" style="display:none;">
+    <span>恭喜你答对了!</span>
+    <span>
+      <button onclick="gotoBack(20)" id="right_text">确认进入下一页</button>
+    </span>
+  </div>
+  
+  <div id="error_div" class="mydiv" style="display:none;">
+    <span>错了，请返回章节重新学习! 也可使用左侧目录快速切换哦！</span>
+    <span>
+      <button onclick="gotoBack(15)" id="error_text">确认并返回</button>
+    </span>
+  </div>
+  
+  <div id="tips_div" class="mydiv" style="display:none;">
+    <span>您只能跳转到已经学习过的页面</span>
+    <span>
+      <button onclick="closeTip()" id="right_text">确认</button>
+    </span>
+  </div>
+
+  <script type="text/javascript" src="js/resize2.js"></script>
+  <script type="text/javascript">
+
+  </script>
+</body>
+
+</html>

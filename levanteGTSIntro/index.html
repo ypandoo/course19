@@ -1,0 +1,62 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<title></title>
+<link href="css/base_index.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery.fullPage.css">
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<link rel="stylesheet" type="text/css" href="js/layer/skin/default/layer.css">
+<style>
+html
+{
+	/* background-image:url(images/bg.png);
+	background-size:cover; */
+}
+</style>
+</head>
+<body>
+<button type="button" class="transparent_class" id="bodyFormDiv" onClick="fullscreen();"  style=" position:absolute;width:100%; height:100%; ">
+</button>
+<iframe style="width:100%; height:100%; border:0px" src="01.html" id="bodyForm"></iframe>
+<script type="text/javascript">
+var isDownhide = false;
+function downhide(){
+	isDownhide = false;
+	$("#down").animate({display:'none'});
+	$("#down").addClass('hide');	
+	$(".p-t-r").animate({top:'10px'});
+	$(".p-t").removeClass('hide');
+}
+function dhide(){
+	isDownhide = true;
+	$(".p-t-r").animate({top:'-45px'});
+	$(".p-t").addClass('hide');
+	$("#down").removeClass('hide');	
+}
+$(function(){
+    $("body").prepend('<div class="p-t-r"><div class="p-t"><div class="page fl">IE浏览器请按F11全屏浏览</div></div></div>');
+	$(".p-t .page").after('<div class="page2 fl"  onclick="dhide()"  style="cursor:pointer">隐藏</div>');
+	if(!isDownhide)
+	{			
+		setTimeout(function(){
+			$(".p-t-r").animate({top:'-45px'});
+			$(".p-t").addClass('hide');
+	  		$(".p-t-r").prepend('<div  style="text-align:center;cursor:pointer;opacity:0.2" id="down" onclick="downhide()"><img src="images/sign-down-icon.png" width="100" height="100" alt=""/></div>');
+	  	},4000);
+	}
+})
+
+
+var url=window.location.search;
+document.cookie="url:"+url;  
+	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link href="css/base.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/layer/layer.js"></script>
+  <link rel="stylesheet" type="text/css" href="js/layer/skin/default/layer.css">
+
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+  <style>
+  .item { position: absolute;
+    height: 200px;
+    width: 620px;
+    top: 310px;
+    left: 180px;
+    cursor: pointer;}
+ .item1 { position: absolute; height: 40px; width: 100%; top: 10px; left: 0px;}
+ .item2 {     position: absolute;
+    height: 40px;
+    width: 100%;
+    top: 75px;
+    left: 0px;}
+ .item3 { position: absolute; height: 40px; width: 100%; top: 145px; left: 0px;}
+ .item4 { position: absolute; height: 40px; width: 100%; top: 210px; left: 0px;}
+  .item5{position: absolute;height: 100%;width: 160px;top: 0px;left: 500px} 
+  .item6 {position: absolute;height: 100%;width: 150px;top:0px;left: 670px;} 
+  .item7 {position: absolute;height: 100%;width: 150px;top: 0px;left: 820px;} 
+  .item8 {position: absolute;height:100%;width: 100px;top: 0px;left: 0px;}
+  .item .active{border:1px solid white; border-radius: 10px}
+  .confirm-box{
+    position: absolute; height: 35px; width: 130px; top: 280px; left: 50%; color:white;
+    margin-left: -75px; text-align: center; border: 1px
+    solid white; line-height: 35px; font-size: 16px; border-radius: 5px; letter-spacing: 5px;
+  }
+  </style>
+</head>
+
+<body onload="reload()" id="scaleable-wrapper">
+  <div id="resize" style="top: 50%; left: 50%;position: absolute;width: 1400px;height: 788px;">
+
+    <div class="animated fadeInUp" style="position: absolute; width:100%; top: 0%; left: 0;height:100%">
+      <img src="" width="100%" height="100%" alt="" id="page_image" />
+    </div>
+
+    <div class="menu" id="menu1">
+      <!-- <a onclick="checkPage(3)"><div class="item1"></div></a>
+      <a onclick="checkPage(4)"><div class="item2"></div></a>
+      <a onclick="checkPage(5)"><div class="item3"></div></a>
+      <a onclick="checkPage(6)"><div class="item4"></div></a>
+      <a onclick="checkPage(7)"><div class="item5"></div></a>
+      <a onclick="checkPage(7)"><div class="item6"></div></a>
+      <a onclick="checkPage(7)"><div class="item7"></div></a> -->
+    </div>
+
+    <div class="item">
+      <div class="item1" onclick="clickQuestion(1)" id="item1"></div>
+      <div class="item2" onclick="clickQuestion(2)" id="item2"></div>
+      <div class="item3" onclick="clickQuestion(3)" id="item3"></div>
+      <div class="item4" onclick="clickQuestion(4)" id="item4"></div>
+      <div class="confirm-box" onclick="confirm()">确定</div>
+    </div>
+
+  </div>
+
+  <div class="p-n-r">
+    <div class="p-r">
+      <div class="out fr">退出</div>
+      <div class="page fr" id="page_mark"></div>
+      <div class="next fr" data="01.html" id="page_next"></div>
+      <div class="prev fr" onclick="gotoPrevPage()" id="page_prev"></div>
+    </div>
+  </div>
+
+  <div id="right_div" class="mydiv" style="display:none;">
+    <span>恭喜你答对了!</span>
+    <span>
+      <button onclick="gotoPage(1)" id="right_text">确认进入下一页</button>
+    </span>
+  </div>
+
+  <div id="error_div" class="mydiv" style="display:none;">
+    <span>错了，请返回章节重新学习! </span>
+    <span>
+      <button onclick="gotoPage(0)" id="error_text">确认并返回</button>
+    </span>
+  </div>
+
+  <div id="tips_div" class="mydiv" style="display:none;">
+    <span>您只能跳转到已经学习过的页面</span>
+    <span>
+      <button onclick="closeTip()" id="right_text">确认</button>
+    </span>
+  </div>
+
+  <script type="text/javascript" src="js/resize2.js"></script>
+  <script type="text/javascript">
+    window.disableNextPage = 1
+    window.rightPage = 29
+    window.wrongPage = 21
+    window.menuNum = 0
+
+    var questionNumber = 4;
+    var answer = 0
+    var correctAnswer = 1
+    function clean(){
+      for(var i = 1; i <= questionNumber; ++i){
+        $('.item'+i).removeClass('active')
+      }
+    }
+
+    /**
+     * Single Select
+     */
+    // function clickQuestion(i){
+    //   clean()
+    //   $('.item'+i).addClass('active')
+    //   answer = i
+    // }
+
+    // function confirm(){
+    //   event.stopPropagation();
+    //   if (answer == correctAnswer) {
+    //     $('#right_div').fadeIn();
+    //   } else {
+    //     $('#error_div').fadeIn();
+    //   }
+    // }
+
+
+    /**
+     * Multi-selct
+     */
+    var ansArray1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    function clickQuestion(index) {
+      if (ansArray1[index] == 1) {
+        ansArray1[index] = 0;
+        $('#item' + index).removeClass('active');
+      } else {
+        ansArray1[index] = 1;
+        $('#item' + index).addClass('active');
+      }
+    }
+
+    function confirm() {
+      if (ansArray1[1] == 1
+        && ansArray1[2] == 1
+        && ansArray1[3] == 0
+        && ansArray1[4] == 0) {
+        $('#right_div').show();
+      } else {
+        $('#error_div').show();
+        return;
+      }
+    }
+  </script>
+</body>
+
+</html>
